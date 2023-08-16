@@ -26,8 +26,8 @@ resource "vsphere_virtual_machine" "vm" {
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
 
-  num_cpus = 2
-  memory   = 1024
+  num_cpus = var.cpu_count
+  memory   = var.memory_size
   guest_id = "other3xLinux64Guest"
 
   network_interface {
@@ -36,6 +36,6 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk0"
-    size  = 20
+    size  = var.disk_size
   }
 }

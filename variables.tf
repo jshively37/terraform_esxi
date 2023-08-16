@@ -8,6 +8,21 @@ variable "esxi_allow_unverified_ssl" {
   default     = true
 }
 
+variable "cpu_count" {
+  description = "Number of CPUs"
+  default     = 2
+}
+
+variable "disk_size" {
+  description = "Size of the disk in GB"
+  default     = 20
+}
+
+variable "memory_size" {
+  description = "About of memory"
+  default     = 1024
+}
+
 variable "vcenter_dc" {
   description = "Name of the vCenter DC"
   default     = "ha-datacenter"
