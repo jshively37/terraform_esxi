@@ -17,7 +17,10 @@ data "vsphere_network" "network" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_resource_pool" "pool" {}
+data "vsphere_resource_pool" "pool" {
+  name = var.resource_pool
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
 
 resource "vsphere_virtual_machine" "vm" {
   name                       = var.vm_name

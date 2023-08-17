@@ -1,6 +1,6 @@
 variable "esxi_host" {
   description = "IP or DNS of ESXi host"
-  default     = "192.168.1.220"
+  default     = "192.168.1.225"
 }
 
 variable "esxi_allow_unverified_ssl" {
@@ -19,18 +19,23 @@ variable "disk_size" {
 }
 
 variable "memory_size" {
-  description = "About of memory"
+  description = "Amount of memory"
   default     = 1024
+}
+
+variable "resource_pool" {
+  description = "Resource pool name"
+  default = "pool"
 }
 
 variable "vcenter_dc" {
   description = "Name of the vCenter DC"
-  default     = "ha-datacenter"
+  default     = "Datacenter"
 }
 
 variable "vcenter_ds" {
   description = "Name of the datastore"
-  default     = "direct_storage"
+  default     = "data"
 }
 
 variable "vcenter_network" {
