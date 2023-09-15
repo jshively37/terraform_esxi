@@ -4,18 +4,18 @@ servers:
     disk_label: disk0
     disk_size: 10
     memory_size: 1024
-  - name: terraform_2
-    num_cpus: 2
-    disk_label: disk1
-    disk_size: 20
-    memory_size: 1024
-  - name: terraform_3
-    num_cpus: 3
-    disk_label: disk1
-    disk_size: 30
-    memory_size: 1024
-  - name: terraform_4
-    num_cpus: 4
-    disk_label: disk1
-    disk_size: 40
-    memory_size: 1024
+  # - name: terraform_2
+  #   num_cpus: 2
+  #   disk_label: disk1
+  #   disk_size: 20
+  #   memory_size: 1024
+  # - name: terraform_3
+  #   num_cpus: 3
+  #   disk_label: disk1
+  #   disk_size: 30
+  #   memory_size: 1024
+  # - name: terraform_4
+  #   num_cpus: 4
+  #   disk_label: disk1
+  #   disk_size: 40
+  #   memory_size: 1024
