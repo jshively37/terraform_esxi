@@ -1,5 +1,5 @@
 locals {
-  yaml_rg= yamldecode(file("source/servers.yaml"))
+  server_config = yamldecode(file("source/servers.yaml"))
 }
 
 data "vsphere_datacenter" "dc" {
@@ -22,14 +22,15 @@ data "vsphere_resource_pool" "pool" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name                       = var.vm_name
+  count                      = length(local.server_config.servers)
+  name                       = local.server_config.servers[count.index].name
   resource_pool_id           = data.vsphere_resource_pool.pool.id
   datastore_id               = data.vsphere_datastore.datastore.id
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
 
-  num_cpus = var.cpu_count
-  memory   = var.memory_size
+  num_cpus = local.server_config.servers[count.index].cpu_count
+  memory   = local.server_config.servers[count.index].memory_size
   guest_id = "other3xLinux64Guest"
 
   network_interface {
@@ -38,6 +39,6 @@ resource "vsphere_virtual_machine" "vm" {
 
   disk {
     label = "disk0"
-    size  = var.disk_size
+    size  = local.server_config.servers[count.index].disk_size
   }
 }

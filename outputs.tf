@@ -10,6 +10,6 @@ output "network_id" {
   value = data.vsphere_network.network.id
 }
 
-output "servers" {
-  value = local.yaml_rg
+output "server_config" {
+  value = local.server_config
 }
