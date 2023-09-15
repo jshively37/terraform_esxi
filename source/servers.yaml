@@ -14,3 +14,8 @@ servers:
     disk_label: disk1
     disk_size: 30
     memory_size: 1024
+  - name: terraform_4
+    num_cpus: 4
+    disk_label: disk1
+    disk_size: 40
+    memory_size: 1024
