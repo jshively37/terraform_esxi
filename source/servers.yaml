@@ -1,0 +1,9 @@
+servers:
+  - name: terraform_1
+    cpu_count: 2
+    disk_size: 20
+    memory_size: 1024
+  - name: terraform_2
+    cpu_count: 2
+    disk_size: 20
+    memory_size: 1024

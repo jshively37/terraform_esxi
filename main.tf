@@ -1,6 +1,5 @@
-provider "vsphere" {
-  vsphere_server       = var.esxi_host
-  allow_unverified_ssl = var.esxi_allow_unverified_ssl
+locals {
+  yaml_rg= yamldecode(file("source/servers.yaml"))
 }
 
 data "vsphere_datacenter" "dc" {
@@ -18,7 +17,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_resource_pool" "pool" {
-  name = var.resource_pool
+  name          = var.resource_pool
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 

@@ -25,7 +25,7 @@ variable "memory_size" {
 
 variable "resource_pool" {
   description = "Resource pool name"
-  default = "pool"
+  default     = "pool"
 }
 
 variable "vcenter_dc" {
