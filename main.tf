@@ -1,6 +1,5 @@
-provider "vsphere" {
-  vsphere_server       = var.esxi_host
-  allow_unverified_ssl = var.esxi_allow_unverified_ssl
+locals {
+  server_config = yamldecode(file("source/servers.yaml"))
 }
 
 data "vsphere_datacenter" "dc" {
@@ -18,19 +17,23 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_resource_pool" "pool" {
-  name = var.resource_pool
+  name          = var.resource_pool
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  name                       = var.vm_name
+  for_each = {
+    for index, server in local.server_config.servers :
+    server.name => server
+  }
+  name                       = each.value.name
   resource_pool_id           = data.vsphere_resource_pool.pool.id
   datastore_id               = data.vsphere_datastore.datastore.id
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
 
-  num_cpus = var.cpu_count
-  memory   = var.memory_size
+  num_cpus = each.value.num_cpus
+  memory   = each.value.memory_size
   guest_id = "other3xLinux64Guest"
 
   network_interface {
@@ -38,7 +41,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   disk {
-    label = "disk0"
-    size  = var.disk_size
+    label = each.value.disk_label
+    size  = each.value.disk_size
   }
 }
