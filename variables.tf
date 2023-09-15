@@ -8,21 +8,6 @@ variable "esxi_allow_unverified_ssl" {
   default     = true
 }
 
-variable "cpu_count" {
-  description = "Number of CPUs"
-  default     = 2
-}
-
-variable "disk_size" {
-  description = "Size of the disk in GB"
-  default     = 20
-}
-
-variable "memory_size" {
-  description = "Amount of memory"
-  default     = 1024
-}
-
 variable "resource_pool" {
   description = "Resource pool name"
   default     = "pool"
@@ -41,9 +26,4 @@ variable "vcenter_ds" {
 variable "vcenter_network" {
   description = "Name of vCenter Network"
   default     = "VM Network"
-}
-
-variable "vm_name" {
-  description = "Name of the VM to create"
-  default     = "terraform-test"
 }

@@ -22,15 +22,18 @@ data "vsphere_resource_pool" "pool" {
 }
 
 resource "vsphere_virtual_machine" "vm" {
-  count                      = length(local.server_config.servers)
-  name                       = local.server_config.servers[count.index].name
+  for_each = {
+    for index, server in local.server_config.servers :
+    server.name => server
+  }
+  name                       = each.value.name
   resource_pool_id           = data.vsphere_resource_pool.pool.id
   datastore_id               = data.vsphere_datastore.datastore.id
   wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout  = 0
 
-  num_cpus = local.server_config.servers[count.index].cpu_count
-  memory   = local.server_config.servers[count.index].memory_size
+  num_cpus = each.value.num_cpus
+  memory   = each.value.memory_size
   guest_id = "other3xLinux64Guest"
 
   network_interface {
@@ -38,7 +41,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 
   disk {
-    label = "disk0"
-    size  = local.server_config.servers[count.index].disk_size
+    label = each.value.disk_label
+    size  = each.value.disk_size
   }
 }
