@@ -10,6 +10,6 @@ output "network_id" {
   value = data.vsphere_network.network.id
 }
 
-# output "server_config" {
-#   value = local.server_config
-# }
+output "hcp_vault_info" {
+  value = data.tfe_outputs.test.nonsensitive_values
+}
