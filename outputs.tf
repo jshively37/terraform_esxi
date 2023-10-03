@@ -11,5 +11,5 @@ output "network_id" {
 }
 
 output "hcp_vault_info" {
-  value = data.tfe_outputs.test.nonsensitive_values
+  value = data.tfe_outputs.hcp_vault_info.nonsensitive_values
 }

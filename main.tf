@@ -46,7 +46,7 @@ resource "vsphere_virtual_machine" "vm" {
   }
 }
 
-data "tfe_outputs" "test" {
+data "tfe_outputs" "hcp_vault_info" {
   organization = var.tfcb_org
   workspace    = var.tfcb_workspace
 }
