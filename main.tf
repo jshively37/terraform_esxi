@@ -45,3 +45,8 @@ resource "vsphere_virtual_machine" "vm" {
     size  = each.value.disk_size
   }
 }
+
+data "tfe_outputs" "test" {
+  organization = var.tfcb_org
+  workspace    = var.tfcb_workspace
+}

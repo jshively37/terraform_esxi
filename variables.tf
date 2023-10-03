@@ -27,3 +27,13 @@ variable "vcenter_network" {
   description = "Name of vCenter Network"
   default     = "VM Network"
 }
+
+variable "tfcb_org" {
+  type        = string
+  description = "Name of the TFCB organization"
+}
+
+variable "tfcb_workspace" {
+  type        = string
+  description = "Name of the TFCB workspace"
+}
